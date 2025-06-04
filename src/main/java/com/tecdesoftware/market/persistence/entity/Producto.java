@@ -1,4 +1,4 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
 import jakarta.persistence.*;
 
@@ -24,6 +24,10 @@ public class Producto {
 
     @Column(name = "cantidad_stock")
     private Integer cantidadStock;
+
+    @ManyToOne
+    @JoinColumn (name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
 
     private boolean estado;
 

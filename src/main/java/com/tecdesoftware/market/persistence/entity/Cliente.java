@@ -1,10 +1,6 @@
-package com.tecdesoftware.market.persistance.entity;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.hibernate.annotations.CollectionId;
+package com.tecdesoftware.market.persistence.entity;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -19,6 +15,11 @@ public class Cliente {
     public String apellido;
     public Long celular;
     public String direccion;
+
+
+
+    @OneToMany (mappedBy = "cliente")
+    private List<Compra> compras;
 
     public String getEmail() {
         return email;
@@ -41,8 +42,7 @@ public class Cliente {
     }
 
     public void setCelular(Long celular) {
-        this.celular = celular;
-    }
+        this.celular = celular;}
 
     public String getApellido() {
         return apellido;
@@ -65,10 +65,9 @@ public class Cliente {
     }
 
     public void setId(Integer id) {
-        this.id = id;
-    }
+        this.id = id;}
 
     @Column(name = "corre_electronico")
-    public String email;
+    public String email;}
 
-}
+

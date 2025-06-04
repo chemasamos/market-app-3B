@@ -1,5 +1,5 @@
-package com.tecdesoftware.market.persistance.entity;
-
+package com.tecdesoftware.market.persistence.entity;
+import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +21,8 @@ public class Categoria {
         this.estado = estado;
     }
 
+    @OneToMany (mappedBy = "categoria")
+    private List<Producto> productos;
 
     public String getDescripcion() {
         return descripcion;

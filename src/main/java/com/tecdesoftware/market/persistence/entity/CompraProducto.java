@@ -1,8 +1,6 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
@@ -12,6 +10,14 @@ public class CompraProducto {
     private CompraProductoPK id;
 
     private Integer cantidad;
+
+    @ManyToOne
+    @JoinColumn (name = "id_compra", insertable = false, updatable = false)
+    private Compra compra;
+
+    @ManyToOne
+    @JoinColumn (name = "id_producto", insertable = false, updatable = false)
+    private Producto producto;
 
     public Double getTotal() {
         return total;
