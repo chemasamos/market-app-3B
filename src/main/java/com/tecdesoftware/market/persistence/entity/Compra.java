@@ -1,77 +1,46 @@
 package com.tecdesoftware.market.persistence.entity;
+
 import jakarta.persistence.*;
-import java.util.List;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table (name = "compras")
+@Table(name = "compras")
 public class Compra {
-    @Id
-    @Column(name = "id_compra")
-    private int idCompra;
 
-    private String nombre;
+    @Id//LLave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id_compra")
+    private Integer idCompra;
+
     @Column(name = "id_cliente")
     private Integer idCliente;
-
 
     private LocalDateTime fecha;
 
     @Column(name = "medio_pago")
     private String medioPago;
 
-
     private String comentario;
 
-    private boolean estado;
+    private Boolean estado;
 
-    @OneToMany (mappedBy = "producto")
-    private List<CompraProducto> productos;
-
-    //relacion con la entidad cliente: muchas compras
     @ManyToOne
-    //no quiero que se modifique la entidad cliente, solo relacionarla
     @JoinColumn (name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
 
-    public int getIdCompra() {
-        return idCompra;
+    @OneToMany(mappedBy = "compra")
+    private List<CompraProducto> compraProductos;
+
+
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(String medioPago) {
-        this.medioPago = medioPago;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public String getComentario() {
@@ -82,11 +51,35 @@ public class Compra {
         this.comentario = comentario;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public String getMedioPago() {
+        return medioPago;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-}
+    public void setMedioPago(String medioPago) {
+        this.medioPago = medioPago;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Integer getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Integer idCompra) {
+        this.idCompra = idCompra;
+    }
 }
