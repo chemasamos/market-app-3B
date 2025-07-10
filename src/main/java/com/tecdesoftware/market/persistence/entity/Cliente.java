@@ -1,32 +1,52 @@
 package com.tecdesoftware.market.persistence.entity;
+
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table (name = "clientes" )
 public class Cliente {
 
     @Id
-    public Integer id;
 
-    public String nombre;
+    private String nombre;
 
-    @Column(name = "apellido")
-    public String apellido;
-    public Long celular;
-    public String direccion;
+    @Column (name = "apellidos")
+    private String apellido;
 
+    private Long celular;
 
+    private String direccion;
 
-    @OneToMany (mappedBy = "cliente")
+    @Column (name = "correo_electronico")
+    private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
-    public String getEmail() {
-        return email;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Long getCelular() {
+        return celular;
+    }
+
+    public void setCelular(Long celular) {
+        this.celular = celular;
     }
 
     public String getDireccion() {
@@ -37,37 +57,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Long getCelular() {
-        return celular;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCelular(Long celular) {
-        this.celular = celular;}
-
-    public String getApellido() {
-        return apellido;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;}
-
-    @Column(name = "corre_electronico")
-    public String email;}
-
-
+}

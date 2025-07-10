@@ -3,11 +3,14 @@ package com.tecdesoftware.market.persistence.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
-import java.io.Serializable;
-
-//Esta clase es para crear llave compuesta
 @Embeddable
-public class CompraProductoPK implements Serializable {
+public class CompraProductoPK {
+
+    @Column (name = "id_compra")
+    private Integer idCompra;
+
+    @Column (name = "id_producto")
+    private Integer Producto;
 
     public Integer getIdCompra() {
         return idCompra;
@@ -17,16 +20,11 @@ public class CompraProductoPK implements Serializable {
         this.idCompra = idCompra;
     }
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Integer getProducto() {
+        return Producto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Integer producto) {
+        Producto = producto;
     }
-
-    @Column(name = "id_compra")
-    private Integer idCompra;
-    @Column(name = "id_producto")
-    private Integer idProducto;
 }
